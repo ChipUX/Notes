@@ -58,7 +58,7 @@ var editSettings = function(context) {
     // save the color and resolution for use later
     var exportScale = parseInt(scaleOptionsMatrix.selectedCell().title());
     
-    var noteColor = colorDropdown.titleOfSelectedItem();
+    var noteColor = selectedIndex;
     
     NSUserDefaults.standardUserDefaults().setObject_forKey(exportScale, kNoteScaleKey);
     NSUserDefaults.standardUserDefaults().setObject_forKey(noteColor, kNoteColorKey);

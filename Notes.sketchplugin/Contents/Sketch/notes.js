@@ -9,29 +9,18 @@ var newNote = function (context) {
   var command = context.command;
   
   var scale = NSUserDefaults.standardUserDefaults().objectForKey(kNoteScaleKey) || 1;
-  var colorName = NSUserDefaults.standardUserDefaults().objectForKey(kNoteColorKey) || "Yellow";
+  var colorName = NSUserDefaults.standardUserDefaults().objectForKey(kNoteColorKey) || 0;
 
-  // could not get switch statement to work here...better done than perfect?
-  if (colorName == "Yellow") {
-    var color = MSColor.colorWithRed_green_blue_alpha(255/255, 242/255, 133/255, 1.0);
-  } else if (colorName == "Blue") {
-    var color = MSColor.colorWithRed_green_blue_alpha(188/255, 236/255, 255/255, 1.0);
-  } else if (colorName == "Green") {
-    var color = MSColor.colorWithRed_green_blue_alpha(199/255, 255/255, 190/255, 1.0);
-  } else if (colorName == "Red") {
-    var color = MSColor.colorWithRed_green_blue_alpha(255/255, 176/255, 176/255, 1.0);
-  } else if (colorName == "Purple") {
-    var color = MSColor.colorWithRed_green_blue_alpha(236/255, 191/255, 255/255, 1.0);
-  }
-  
+  let color = ['#00ff00', '#ff0000', '#0000ff', '#ffff00', '#00ffff'];
+
   var width = 200 * scale;
   var height = 200 * scale;
   var x = Math.round(view.origin.x + view.size.width/2 - width/2);
   var y = Math.round(view.origin.y + view.size.height/2 - height/2);
   var padding = 10 * scale;
-  var noteColor = color;
+  var noteColor = MSColor.colorWithHex(color[colorName], 1.0);
 
-  // the square for the note
+  // the square for the note 
   var rectangleLayer = MSRectangleShape.alloc().init();
   rectangleLayer.frame().setWidth(width);
   rectangleLayer.frame().setHeight(height);
